@@ -13,6 +13,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import {withRouter}from 'react-router-dom';
 
 const useStyles = makeStyles({
   card: {
@@ -26,11 +27,12 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SingleProduct({title, link, price}) {
+const SingleProduct = ({title, link, price, match, history}) => {
   const classes = useStyles();
 
+  // WHAT EACH PRODUCT LOOKS LIKE
   return (
-    <div>
+    <div onClick={() => history.push(`${match.url}${link}`)}>
          <GridListTileBar
               title={title}
               subtitle={<span>starting at $ {price}</span>}
@@ -43,3 +45,5 @@ export default function SingleProduct({title, link, price}) {
     </div>
   );
 }
+
+export default withRouter(SingleProduct)

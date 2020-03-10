@@ -31,20 +31,22 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function TitlebarGridList() {
+export default function ProrductList() {
   const classes = useStyles();
+
+  // DIRECTORY TO LIST THE CATEGORY ITEMS
 
   return (
     <Container >
     <div className={classes.root}>
-      <GridList cellHeight={180} className={classes.gridList}>
-        <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-          <ListSubheader component="div">LETs EAT Nom Noms</ListSubheader>
+      <GridList cellHeight={180} className={classes.gridList} className={classes.root}>
+        <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }} >
+          <ListSubheader component="div">Chooose Something to Eat</ListSubheader>
         </GridListTile>
-        {ProductData.map(({title, price, img, link}) => (
+        {ProductData.map(({ img, ...sectionProps}) => (
           <GridListTile key={img}>
-            <img src={img} alt={title} />
-          <SingleProduct title={title} img={img} link={link} price={price} />
+            <img src={img} />
+          <SingleProduct {...sectionProps} />
           </GridListTile>
         ))}
       </GridList>
